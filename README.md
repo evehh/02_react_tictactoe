@@ -1,8 +1,8 @@
 Proyecto creado con [Create React App](https://github.com/facebook/create-react-app).
 
-## Proyecto de aprendizaje
+## Descripción
 
-El actual proyecto fue creado con el propósito de aprender React
+Juego de "Tic Tac Toe" (o también conocido como "Gato"). Proyecto creado con el propósito de aprender React.
 
 ## Demo
 

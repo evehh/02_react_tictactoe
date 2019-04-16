@@ -131,9 +131,9 @@ class Board extends Component {
     if (this.state.winner === "" && this.state.full) {
       return <h4>Tablero lleno.</h4>;
     } else if (this.state.winner === "") {
-      return <h4>Es el turno de '{this.state.turn}'</h4>;
+      return <h4>Es el turno de '{this.state.turn}'.</h4>;
     } else if (this.state.winner !== "") {
-      return <h2>Ha ganado '{this.state.winner}'</h2>;
+      return <h2>Ha ganado '{this.state.winner}'.</h2>;
     }
   }
   renderInfo() {
