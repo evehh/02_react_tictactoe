@@ -15,6 +15,7 @@ class Board extends Component {
       { id: 8, content: "" }
     ],
     turn: "x",
+    full: false,
     winner: "",
     info: ""
   };
@@ -42,6 +43,7 @@ class Board extends Component {
         { id: 8, content: "" }
       ],
       turn: "x",
+      full: false,
       winner: "",
       info: ""
     };
@@ -126,9 +128,11 @@ class Board extends Component {
   }
 
   renderTurnOrWinner() {
-    if (this.state.winner === "") {
+    if (this.state.winner === "" && this.state.full) {
+      return <h4>Tablero lleno.</h4>;
+    } else if (this.state.winner === "") {
       return <h4>Es el turno de '{this.state.turn}'</h4>;
-    } else {
+    } else if (this.state.winner !== "") {
       return <h2>Ha ganado '{this.state.winner}'</h2>;
     }
   }

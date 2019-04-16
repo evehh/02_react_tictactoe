@@ -13,23 +13,34 @@ export default function play(actualState, id) {
   actualState.info = "";
   if (checkWin(actualState) === "") {
     //No existe ganador
-    if (actualState.slots[id].content === "") {
-      //Celda vacía
-      actualState.slots[id].content = actualState.turn;
-      actualState.turn = actualState.turn === "x" ? "o" : "x";
-      let winner = checkWin(actualState);
-      if (winner !== "") {
-        //existe un nuevo ganador
-        actualState.winner = winner;
+    if (!checkIfAllSlotsAreSet(actualState.slots)) {
+      //No todas las celdas están llenas
+      if (actualState.slots[id].content === "") {
+        //Celda vacía
+        actualState.slots[id].content = actualState.turn;
+        actualState.turn = actualState.turn === "x" ? "o" : "x";
+        let winner = checkWin(actualState);
+        if (winner !== "") {
+          //existe un nuevo ganador
+          actualState.winner = winner;
+        } else if (winner === "" && checkIfAllSlotsAreSet(actualState.slots)) {
+          actualState.full = true;
+          actualState.info =
+            "Todas las celdas están ocupadas. Inicie un nuevo juego.";
+        }
+      } else {
+        //Celda ya tiene valor;
+        actualState.info = "Esa celda está ocupada.";
       }
     } else {
-      //Celda ya tiene valor;
-      actualState.info = "Esa celda está ocupada.";
+      actualState.info =
+        "Todas las celdas están ocupadas. Inicie un nuevo juego.";
     }
   } else {
     //Ya existe un ganador
     actualState.info = "Ya existe un ganador. Inicie nuevamente el juego.";
   }
+  console.log(actualState);
   return actualState;
 }
 
@@ -66,4 +77,15 @@ function checkSingleRowForWin(slotContent0, slotContent1, slotContent2) {
     }
   }
   return winner;
+}
+
+function checkIfAllSlotsAreSet(slots) {
+  let allSet = true;
+  for (let index = 0; index < slots.length; index++) {
+    if (slots[index].content === "") {
+      allSet = false;
+      break;
+    }
+  }
+  return allSet;
 }
