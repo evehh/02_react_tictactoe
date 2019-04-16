@@ -40,7 +40,6 @@ export default function play(actualState, id) {
     //Ya existe un ganador
     actualState.info = "Ya existe un ganador. Inicie nuevamente el juego.";
   }
-  console.log(actualState);
   return actualState;
 }
 
